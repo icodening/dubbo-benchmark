@@ -28,26 +28,26 @@
         <module>benchmark-base</module>
         <module>server-base</module>
         <module>client-base</module>
-        <module>dubbo-kryo-client</module>
-        <module>dubbo-kryo-server</module>
-        <module>dubbo-hessianlite-client</module>
-        <module>dubbo-hessianlite-server</module>
-        <module>dubbo-fst-client</module>
-        <module>dubbo-fst-server</module>
-        <module>dubbo-native-hessian-client</module>
-        <module>dubbo-native-hessian-server</module>
-        <module>dubbo-avro-server</module>
-        <module>dubbo-avro-client</module>
-        <module>dubbo-fastjson-client</module>
-        <module>dubbo-fastjson-server</module>
-        <module>dubbo-protostuff-server</module>
-        <module>dubbo-protostuff-client</module>
-        <module>dubbo-gson-server</module>
-        <module>dubbo-gson-client</module>
-        <module>dubbo-protobuf-json-server</module>
-        <module>dubbo-protobuf-json-client</module>
-        <module>dubbo-pb-server</module>
-        <module>dubbo-pb-client</module>
+<!--        <module>dubbo-kryo-client</module>-->
+<!--        <module>dubbo-kryo-server</module>-->
+<!--        <module>dubbo-hessianlite-client</module>-->
+<!--        <module>dubbo-hessianlite-server</module>-->
+<!--        <module>dubbo-fst-client</module>-->
+<!--        <module>dubbo-fst-server</module>-->
+<!--        <module>dubbo-native-hessian-client</module>-->
+<!--        <module>dubbo-native-hessian-server</module>-->
+<!--        <module>dubbo-avro-server</module>-->
+<!--        <module>dubbo-avro-client</module>-->
+<!--        <module>dubbo-fastjson-client</module>-->
+<!--        <module>dubbo-fastjson-server</module>-->
+<!--        <module>dubbo-protostuff-server</module>-->
+<!--        <module>dubbo-protostuff-client</module>-->
+<!--        <module>dubbo-gson-server</module>-->
+<!--        <module>dubbo-gson-client</module>-->
+<!--        <module>dubbo-protobuf-json-server</module>-->
+<!--        <module>dubbo-protobuf-json-client</module>-->
+<!--        <module>dubbo-pb-server</module>-->
+<!--        <module>dubbo-pb-client</module>-->
         <module>dubbo-grpc-server</module>
         <module>dubbo-grpc-client</module>
         <module>dubbo-triple-server</module>
@@ -86,6 +86,21 @@
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>io.grpc</groupId>
+                <artifactId>grpc-bom</artifactId>
+                <version>1.44.0</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>io.netty</groupId>
+                <artifactId>netty-bom</artifactId>
+                <version>4.1.72.Final</version>
+                <scope>import</scope>
+                <type>pom</type>
+            </dependency>
+
             <!-- use netty 4 by default -->
             <dependency>
                 <groupId>org.apache.dubbo</groupId>

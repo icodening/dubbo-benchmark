@@ -4,10 +4,13 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
     <context:property-placeholder location="classpath:benchmark.properties" system-properties-mode="OVERRIDE"/>
-    <dubbo:application name="dubbo-triple-server"/>
+    <dubbo:application name="dubbo-triple-server">
+        <dubbo:parameter key="qos.enable" value="false"/>
+        <dubbo:parameter key="qos.port" value="22223"/>
+    </dubbo:application>
 
     <dubbo:protocol name="tri" host="${server.host}" port="${server.port}"/>
     <dubbo:registry address="N/A" />
-    <dubbo:service interface="org.apache.dubbo.benchmark.service.UserService" ref="userService" protocol="tri"/>
-    <bean id="userService" class="org.apache.dubbo.benchmark.service.UserServiceServerImpl"/>
+    <dubbo:service interface="org.apache.dubbo.benchmark.bean.UserServiceDubbo$IUserService" ref="userService" protocol="tri" serialization="protobuf"/>
+    <bean id="userService" class="org.apache.dubbo.benchmark.service.PBUserServiceImpl"/>
 </beans>

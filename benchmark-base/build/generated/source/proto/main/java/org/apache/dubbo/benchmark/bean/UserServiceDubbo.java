@@ -15,9 +15,9 @@ Class<?> clazz = null;
 try {
 clazz = Class.forName(UserServiceDubbo.class.getName());
 if (registered.compareAndSet(false, true)) {
-    org.apache.dubbo.common.serialize.protobuf.support.ProtobufUtils.marshaller(
+    org.apache.dubbo.rpc.protocol.tri.SingleProtobufUtils.marshaller(
     org.apache.dubbo.benchmark.bean.PagePB.Response.getDefaultInstance());
-    org.apache.dubbo.common.serialize.protobuf.support.ProtobufUtils.marshaller(
+    org.apache.dubbo.rpc.protocol.tri.SingleProtobufUtils.marshaller(
     org.apache.dubbo.benchmark.bean.PagePB.Request.getDefaultInstance());
 }
 } catch (ClassNotFoundException e) {
