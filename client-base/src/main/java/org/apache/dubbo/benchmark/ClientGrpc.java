@@ -46,8 +46,8 @@ public class ClientGrpc {
     }
 
     @Benchmark
-    @BenchmarkMode({Mode.Throughput, Mode.AverageTime, Mode.SampleTime})
-    @OutputTimeUnit(TimeUnit.MILLISECONDS)
+    @BenchmarkMode({Mode.Throughput})
+    @OutputTimeUnit(TimeUnit.SECONDS)
     public boolean existUser() throws Exception {
         final int count = counter.getAndIncrement();
         return userService.existUser(PagePB.Request.newBuilder().setEmail(String.valueOf(count)).build())
@@ -55,8 +55,8 @@ public class ClientGrpc {
     }
 
     @Benchmark
-    @BenchmarkMode({Mode.Throughput, Mode.AverageTime, Mode.SampleTime})
-    @OutputTimeUnit(TimeUnit.MILLISECONDS)
+    @BenchmarkMode({Mode.Throughput})
+    @OutputTimeUnit(TimeUnit.SECONDS)
     public boolean createUser() throws Exception {
         final int count = counter.getAndIncrement();
 
@@ -81,16 +81,16 @@ public class ClientGrpc {
     }
 
     @Benchmark
-    @BenchmarkMode({Mode.Throughput, Mode.AverageTime, Mode.SampleTime})
-    @OutputTimeUnit(TimeUnit.MILLISECONDS)
+    @BenchmarkMode({Mode.Throughput})
+    @OutputTimeUnit(TimeUnit.SECONDS)
     public PagePB.User getUser() throws Exception {
         final int count = counter.getAndIncrement();
         return userService.getUser(PagePB.Request.newBuilder().setId(count).build()).getUser();
     }
 
     @Benchmark
-    @BenchmarkMode({Mode.Throughput, Mode.AverageTime, Mode.SampleTime})
-    @OutputTimeUnit(TimeUnit.MILLISECONDS)
+    @BenchmarkMode({Mode.Throughput})
+    @OutputTimeUnit(TimeUnit.SECONDS)
     public PagePB.Page listUser() throws Exception {
         final int count = counter.getAndIncrement();
         return userService.listUser(PagePB.Request.newBuilder().setPage(count).build()).getPage();

@@ -48,33 +48,33 @@ public class Client extends AbstractClient {
         context.close();
     }
 
-    @Benchmark
-    @BenchmarkMode({Mode.Throughput, Mode.AverageTime, Mode.SampleTime})
-    @OutputTimeUnit(TimeUnit.MILLISECONDS)
+//    @Benchmark
+    @BenchmarkMode({Mode.Throughput})
+    @OutputTimeUnit(TimeUnit.SECONDS)
     @Override
     public boolean existUser() throws Exception {
         return super.existUser();
     }
 
-    @Benchmark
-    @BenchmarkMode({Mode.Throughput, Mode.AverageTime, Mode.SampleTime})
-    @OutputTimeUnit(TimeUnit.MILLISECONDS)
+//    @Benchmark
+    @BenchmarkMode({Mode.Throughput})
+    @OutputTimeUnit(TimeUnit.SECONDS)
     @Override
     public boolean createUser() throws Exception {
         return super.createUser();
     }
 
-    @Benchmark
-    @BenchmarkMode({Mode.Throughput, Mode.AverageTime, Mode.SampleTime})
-    @OutputTimeUnit(TimeUnit.MILLISECONDS)
+//    @Benchmark
+    @BenchmarkMode({Mode.Throughput})
+    @OutputTimeUnit(TimeUnit.SECONDS)
     @Override
     public User getUser() throws Exception {
         return super.getUser();
     }
 
     @Benchmark
-    @BenchmarkMode({Mode.Throughput, Mode.AverageTime, Mode.SampleTime})
-    @OutputTimeUnit(TimeUnit.MILLISECONDS)
+    @BenchmarkMode({Mode.Throughput})
+    @OutputTimeUnit(TimeUnit.SECONDS)
     @Override
     public Page<User> listUser() throws Exception {
         return super.listUser();
@@ -95,7 +95,7 @@ public class Client extends AbstractClient {
 
         int warmupIterations = Integer.valueOf(line.getOptionValue("warmupIterations", "3"));
         int warmupTime = Integer.valueOf(line.getOptionValue("warmupTime", "10"));
-        int measurementIterations = Integer.valueOf(line.getOptionValue("measurementIterations", "3"));
+        int measurementIterations = Integer.valueOf(line.getOptionValue("measurementIterations", "1"));
         int measurementTime = Integer.valueOf(line.getOptionValue("measurementTime", "10"));
 
         Options opt;

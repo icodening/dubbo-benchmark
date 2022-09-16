@@ -12,7 +12,10 @@
     <artifactId>dubbo-triple-client</artifactId>
 
     <properties>
-        <dubbo.version>3.1.0</dubbo.version>
+<!--        <dubbo.version>3.0.11</dubbo.version>-->
+<!--        <dubbo.version>3.0.12-SNAPSHOT</dubbo.version>-->
+<!--        <dubbo.version>3.1.0</dubbo.version>-->
+        <dubbo.version>3.1.1-SNAPSHOT</dubbo.version>
     </properties>
 
     <dependencies>

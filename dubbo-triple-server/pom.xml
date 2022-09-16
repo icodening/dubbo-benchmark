@@ -11,9 +11,10 @@
 
     <artifactId>dubbo-triple-server</artifactId>
     <properties>
-        <dubbo.version>3.1.0</dubbo.version>
-        <protoc.version>3.19.4</protoc.version>
-        <grpc.version>1.44.1</grpc.version>
+<!--        <dubbo.version>3.0.11</dubbo.version>-->
+<!--        <dubbo.version>3.0.12-SNAPSHOT</dubbo.version>-->
+<!--        <dubbo.version>3.1.0</dubbo.version>-->
+        <dubbo.version>3.1.1-SNAPSHOT</dubbo.version>
     </properties>
 
     <dependencies>

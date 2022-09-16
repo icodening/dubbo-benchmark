@@ -17,6 +17,8 @@ build() {
 
 java_options() {
     JAVA_OPTIONS="-server -Xmx1g -Xms1g -XX:MaxDirectMemorySize=1g -XX:+UseG1GC"
+#    JAVA_OPTIONS="-agentlib:jdwp=transport=dt_socket,server=n,address=localhost:5005,suspend=y -server -Xmx1g -Xms1g -XX:MaxDirectMemorySize=1g -XX:+UseG1GC"
+#    JAVA_OPTIONS="-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005 -server -Xmx1g -Xms1g -XX:MaxDirectMemorySize=1g -XX:+UseG1GC"
     if [ "x${MODE}" = "xprofiling" ]; then
         JAVA_OPTIONS="${JAVA_OPTIONS} \
             -XX:+UnlockCommercialFeatures \
