@@ -46,7 +46,7 @@ public class ClientPb {
         context.close();
     }
 
-    @Benchmark
+//    @Benchmark
     @BenchmarkMode({Mode.Throughput})
     @OutputTimeUnit(TimeUnit.SECONDS)
     public boolean existUser() throws Exception {
@@ -56,8 +56,8 @@ public class ClientPb {
     }
 
     @Benchmark
-    @BenchmarkMode({Mode.Throughput})
-    @OutputTimeUnit(TimeUnit.SECONDS)
+    @BenchmarkMode({Mode.Throughput, Mode.SampleTime})
+    @OutputTimeUnit(TimeUnit.MILLISECONDS)
     public boolean createUser() throws Exception {
         final int count = counter.getAndIncrement();
 
@@ -81,7 +81,7 @@ public class ClientPb {
 
     }
 
-    @Benchmark
+//    @Benchmark
     @BenchmarkMode({Mode.Throughput})
     @OutputTimeUnit(TimeUnit.SECONDS)
     public PagePB.User getUser() throws Exception {
@@ -89,7 +89,7 @@ public class ClientPb {
         return userService.getUser(PagePB.Request.newBuilder().setId(count).build()).getUser();
     }
 
-    @Benchmark
+//    @Benchmark
     @BenchmarkMode({Mode.Throughput})
     @OutputTimeUnit(TimeUnit.SECONDS)
     public PagePB.Page listUser() throws Exception {
@@ -101,7 +101,7 @@ public class ClientPb {
         Options opt;
         ChainedOptionsBuilder optBuilder = new OptionsBuilder()
                 .include(ClientPb.class.getSimpleName())
-                .warmupIterations(3)
+                .warmupIterations(6)
                 .warmupTime(TimeValue.seconds(10))
                 .measurementIterations(3)
                 .measurementTime(TimeValue.seconds(10))

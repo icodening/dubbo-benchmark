@@ -11,6 +11,9 @@
 
     <artifactId>dubbo-pb-server</artifactId>
 
+    <properties>
+        <dubbo.version>3.1.2-SNAPSHOT</dubbo.version>
+    </properties>
     <dependencies>
         <dependency>
             <groupId>org.apache.dubbo</groupId>

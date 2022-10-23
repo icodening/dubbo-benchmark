@@ -15,7 +15,4 @@
     <bean id="userService" class="org.apache.dubbo.benchmark.service.PBUserServiceImpl"/>
 <!--    <dubbo:service interface="org.apache.dubbo.benchmark.service.UserService" ref="userService" protocol="tri"/>-->
 <!--    <bean id="userService" class="org.apache.dubbo.benchmark.service.UserServiceServerImpl"/>-->
-
-    <dubbo:service interface="org.apache.dubbo.benchmark.bean.UserServiceDubbo$IUserService" ref="userService" protocol="tri" serialization="protobuf"/>
-    <bean id="userService" class="org.apache.dubbo.benchmark.service.PBUserServiceImpl"/>
 </beans>

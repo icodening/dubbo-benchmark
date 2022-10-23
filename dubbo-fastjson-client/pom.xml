@@ -10,7 +10,14 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>dubbo-fastjson-client</artifactId>
-
+    <properties>
+        <!--        <dubbo.version>3.0.11</dubbo.version>-->
+        <!--        <dubbo.version>3.0.12-SNAPSHOT</dubbo.version>-->
+<!--                <dubbo.version>3.1.1</dubbo.version>-->
+<!--        <dubbo.version>3.1.2-SNAPSHOT</dubbo.version>-->
+        <dubbo.version>3.2.0-beta.1-SNAPSHOT</dubbo.version>
+<!--        <dubbo.version>3.2.0-SNAPSHOT</dubbo.version>-->
+    </properties>
     <dependencies>
         <dependency>
             <groupId>org.apache.dubbo</groupId>

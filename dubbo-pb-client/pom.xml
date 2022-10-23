@@ -11,6 +11,10 @@
 
     <artifactId>dubbo-pb-client</artifactId>
 
+    <properties>
+        <dubbo.version>3.1.2-SNAPSHOT</dubbo.version>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>com.google.protobuf</groupId>
