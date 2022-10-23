@@ -12,16 +12,16 @@
     <artifactId>benchmark-base</artifactId>
 
     <properties>
-        <dubbo.compiler.version>0.0.1</dubbo.compiler.version>
-        <grpc.version>1.19.0</grpc.version>
-        <dubbo.version>3.0.11</dubbo.version>
+        <dubbo.compiler.version>3.1.0</dubbo.compiler.version>
+        <protoc.version>3.19.4</protoc.version>
+        <grpc.version>1.44.1</grpc.version>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>com.google.protobuf</groupId>
             <artifactId>protobuf-java</artifactId>
-            <version>3.7.1</version>
+            <version>3.16.3</version>
         </dependency>
         <dependency>
             <groupId>com.google.protobuf</groupId>
@@ -62,18 +62,20 @@
             <plugin>
                 <groupId>org.xolstice.maven.plugins</groupId>
                 <artifactId>protobuf-maven-plugin</artifactId>
-                <version>0.5.1</version>
+                <version>0.6.1</version>
                 <configuration>
                     <protocArtifact>com.google.protobuf:protoc:3.7.1:exe:${os.detected.classifier}</protocArtifact>
-                    <outputDirectory>build/generated/source/proto/main/java</outputDirectory>
-                    <clearOutputDirectory>false</clearOutputDirectory>
+                    <pluginId>grpc-java</pluginId>
+                    <pluginArtifact>io.grpc:protoc-gen-grpc-java:${grpc.version}:exe:${os.detected.classifier}</pluginArtifact>
+<!--                    <outputDirectory>build/generated/source/proto/main/java</outputDirectory>-->
+                    <clearOutputDirectory>true</clearOutputDirectory>
                     <protocPlugins>
                         <protocPlugin>
-                            <id>dubbo</id>
+                            <id>dubbo-3</id>
                             <groupId>org.apache.dubbo</groupId>
                             <artifactId>dubbo-compiler</artifactId>
                             <version>${dubbo.compiler.version}</version>
-                            <mainClass>org.apache.dubbo.gen.dubbo.DubboGenerator</mainClass>
+                            <mainClass>org.apache.dubbo.gen.dubbo.Dubbo3Generator</mainClass>
                         </protocPlugin>
                     </protocPlugins>
                 </configuration>
