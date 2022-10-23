@@ -38,8 +38,8 @@
 <!--        <module>dubbo-native-hessian-server</module>-->
 <!--        <module>dubbo-avro-server</module>-->
 <!--        <module>dubbo-avro-client</module>-->
-<!--        <module>dubbo-fastjson-client</module>-->
-<!--        <module>dubbo-fastjson-server</module>-->
+        <module>dubbo-fastjson-client</module>
+        <module>dubbo-fastjson-server</module>
 <!--        <module>dubbo-protostuff-server</module>-->
 <!--        <module>dubbo-protostuff-client</module>-->
 <!--        <module>dubbo-gson-server</module>-->

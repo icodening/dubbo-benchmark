@@ -24,7 +24,7 @@ public final class UserServiceGrpc {
 
   private UserServiceGrpc() {}
 
-  public static final String SERVICE_NAME = "org.apache.dubbo.benchmark.bean.UserService";
+  public static final String SERVICE_NAME = "org.apache.dubbo.benchmark.bean.DubboUserServiceGrpc$IUserService";
 
   // Static method descriptors that strictly reflect the proto.
   private static volatile io.grpc.MethodDescriptor<org.apache.dubbo.benchmark.bean.PagePB.Request,
@@ -45,7 +45,7 @@ public final class UserServiceGrpc {
               io.grpc.MethodDescriptor.<org.apache.dubbo.benchmark.bean.PagePB.Request, org.apache.dubbo.benchmark.bean.PagePB.Response>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(
-                  "org.apache.dubbo.benchmark.bean.UserService", "existUser"))
+                  "org.apache.dubbo.benchmark.bean.DubboUserServiceGrpc$IUserService", "existUser"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   org.apache.dubbo.benchmark.bean.PagePB.Request.getDefaultInstance()))
@@ -77,7 +77,7 @@ public final class UserServiceGrpc {
               io.grpc.MethodDescriptor.<org.apache.dubbo.benchmark.bean.PagePB.Request, org.apache.dubbo.benchmark.bean.PagePB.Response>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(
-                  "org.apache.dubbo.benchmark.bean.UserService", "createUser"))
+                  "org.apache.dubbo.benchmark.bean.DubboUserServiceGrpc$IUserService", "createUser"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   org.apache.dubbo.benchmark.bean.PagePB.Request.getDefaultInstance()))
@@ -109,7 +109,7 @@ public final class UserServiceGrpc {
               io.grpc.MethodDescriptor.<org.apache.dubbo.benchmark.bean.PagePB.Request, org.apache.dubbo.benchmark.bean.PagePB.Response>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(
-                  "org.apache.dubbo.benchmark.bean.UserService", "getUser"))
+                  "org.apache.dubbo.benchmark.bean.DubboUserServiceGrpc$IUserService", "getUser"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   org.apache.dubbo.benchmark.bean.PagePB.Request.getDefaultInstance()))
@@ -141,7 +141,7 @@ public final class UserServiceGrpc {
               io.grpc.MethodDescriptor.<org.apache.dubbo.benchmark.bean.PagePB.Request, org.apache.dubbo.benchmark.bean.PagePB.Response>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(
-                  "org.apache.dubbo.benchmark.bean.UserService", "listUser"))
+                  "org.apache.dubbo.benchmark.bean.DubboUserServiceGrpc$IUserService", "listUser"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   org.apache.dubbo.benchmark.bean.PagePB.Request.getDefaultInstance()))

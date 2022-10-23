@@ -8,16 +8,12 @@
         <dubbo:parameter key="qos.enable" value="false"/>
         <dubbo:parameter key="qos.port" value="22223"/>
     </dubbo:application>
-<!--    <dubbo:consumer threads="12" corethreads="12"/>-->
+    <dubbo:consumer timeout="1000"/>
 <!--    <dubbo:reference id="userService" check="false" protocol="tri"-->
 <!--                     interface="org.apache.dubbo.benchmark.bean.DubboUserServiceGrpc$IUserService"-->
 <!--                     url="tri://${server.host}:${server.port}"/>-->
-
+<!---->
     <dubbo:reference id="userService" check="false" protocol="tri"
                      interface="org.apache.dubbo.benchmark.bean.UserServiceDubbo$IUserService"
                      url="tri://${server.host}:${server.port}"/>
-<!--     <dubbo:reference id="userService" check="false" protocol="tri"
-                     interface="org.apache.dubbo.benchmark.service.UserService"
-                     url="tri://${server.host}:${server.port}"/>
- -->
 </beans>

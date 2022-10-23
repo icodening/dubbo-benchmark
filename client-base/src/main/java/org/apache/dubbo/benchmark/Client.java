@@ -56,9 +56,9 @@ public class Client extends AbstractClient {
         return super.existUser();
     }
 
-//    @Benchmark
-    @BenchmarkMode({Mode.Throughput})
-    @OutputTimeUnit(TimeUnit.SECONDS)
+    @Benchmark
+    @BenchmarkMode({Mode.SampleTime, Mode.Throughput})
+    @OutputTimeUnit(TimeUnit.MILLISECONDS)
     @Override
     public boolean createUser() throws Exception {
         return super.createUser();
@@ -72,7 +72,7 @@ public class Client extends AbstractClient {
         return super.getUser();
     }
 
-    @Benchmark
+//    @Benchmark
     @BenchmarkMode({Mode.Throughput})
     @OutputTimeUnit(TimeUnit.SECONDS)
     @Override
@@ -93,9 +93,9 @@ public class Client extends AbstractClient {
 
         CommandLine line = parser.parse(options, args);
 
-        int warmupIterations = Integer.valueOf(line.getOptionValue("warmupIterations", "3"));
+        int warmupIterations = Integer.valueOf(line.getOptionValue("warmupIterations", "6"));
         int warmupTime = Integer.valueOf(line.getOptionValue("warmupTime", "10"));
-        int measurementIterations = Integer.valueOf(line.getOptionValue("measurementIterations", "1"));
+        int measurementIterations = Integer.valueOf(line.getOptionValue("measurementIterations", "3"));
         int measurementTime = Integer.valueOf(line.getOptionValue("measurementTime", "10"));
 
         Options opt;
