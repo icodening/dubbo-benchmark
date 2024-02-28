@@ -12,7 +12,7 @@
     <properties>
         <java.source>1.8</java.source>
         <java.target>1.8</java.target>
-        <dubbo.version>3.2.7</dubbo.version>
+        <dubbo.version>3.2.11</dubbo.version>
         <netty.version>4.1.25.Final</netty.version>
         <kryo.version>4.0.2</kryo.version>
         <kryo-serializers.version>0.42</kryo-serializers.version>
@@ -36,18 +36,18 @@
         <module>dubbo-fst-server</module>
         <module>dubbo-native-hessian-client</module>
         <module>dubbo-native-hessian-server</module>
-        <module>dubbo-avro-server</module>
-        <module>dubbo-avro-client</module>
+<!--        <module>dubbo-avro-server</module>-->
+<!--        <module>dubbo-avro-client</module>-->
         <module>dubbo-fastjson-client</module>
         <module>dubbo-fastjson-server</module>
         <module>dubbo-fastjson2-client</module>
         <module>dubbo-fastjson2-server</module>
-        <module>dubbo-protostuff-server</module>
-        <module>dubbo-protostuff-client</module>
+<!--        <module>dubbo-protostuff-server</module>-->
+<!--        <module>dubbo-protostuff-client</module>-->
         <module>dubbo-gson-server</module>
         <module>dubbo-gson-client</module>
-        <module>dubbo-protobuf-json-server</module>
-        <module>dubbo-protobuf-json-client</module>
+<!--        <module>dubbo-protobuf-json-server</module>-->
+<!--        <module>dubbo-protobuf-json-client</module>-->
         <module>dubbo-pb-server</module>
         <module>dubbo-pb-client</module>
         <module>dubbo-grpc-server</module>
