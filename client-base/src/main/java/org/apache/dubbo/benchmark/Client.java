@@ -15,6 +15,7 @@ import org.openjdk.jmh.annotations.OutputTimeUnit;
 import org.openjdk.jmh.annotations.Scope;
 import org.openjdk.jmh.annotations.State;
 import org.openjdk.jmh.annotations.TearDown;
+import org.openjdk.jmh.results.format.ResultFormatType;
 import org.openjdk.jmh.runner.Runner;
 import org.openjdk.jmh.runner.options.ChainedOptionsBuilder;
 import org.openjdk.jmh.runner.options.Options;
@@ -88,6 +89,7 @@ public class Client extends AbstractClient {
         options.addOption(Option.builder().longOpt("warmupTime").hasArg().build());
         options.addOption(Option.builder().longOpt("measurementIterations").hasArg().build());
         options.addOption(Option.builder().longOpt("measurementTime").hasArg().build());
+        options.addOption(Option.builder().longOpt("resultFormat").hasArg().build());
 
         CommandLineParser parser = new DefaultParser();
 
@@ -97,9 +99,12 @@ public class Client extends AbstractClient {
         int warmupTime = Integer.valueOf(line.getOptionValue("warmupTime", "10"));
         int measurementIterations = Integer.valueOf(line.getOptionValue("measurementIterations", "3"));
         int measurementTime = Integer.valueOf(line.getOptionValue("measurementTime", "10"));
+        String format = line.getOptionValue("resultFormat", "json");
 
         Options opt;
         ChainedOptionsBuilder optBuilder = new OptionsBuilder()
+                .resultFormat(ResultFormatType.valueOf(format.toUpperCase()))
+                .result("jmh_" + System.currentTimeMillis() + "." + format)
                 .include(Client.class.getSimpleName())
                 .exclude(ClientPb.class.getSimpleName())
                 .exclude(ClientGrpc.class.getSimpleName())
