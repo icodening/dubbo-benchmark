@@ -52,17 +52,13 @@ public class ClientPb {
     }
 
     @Benchmark
-    @BenchmarkMode({Mode.Throughput, Mode.AverageTime, Mode.SampleTime})
-    @OutputTimeUnit(TimeUnit.MILLISECONDS)
     public boolean existUser() throws Exception {
         final int count = counter.getAndIncrement();
         return userService.existUser(PagePB.Request.newBuilder().setEmail(String.valueOf(count)).build())
                 .getState();
     }
 
-    @Benchmark
-    @BenchmarkMode({Mode.Throughput, Mode.AverageTime, Mode.SampleTime})
-    @OutputTimeUnit(TimeUnit.MILLISECONDS)
+//    @Benchmark
     public boolean createUser() throws Exception {
         final int count = counter.getAndIncrement();
 
@@ -86,24 +82,20 @@ public class ClientPb {
 
     }
 
-    @Benchmark
-    @BenchmarkMode({Mode.Throughput, Mode.AverageTime, Mode.SampleTime})
-    @OutputTimeUnit(TimeUnit.MILLISECONDS)
+//    @Benchmark
     public PagePB.User getUser() throws Exception {
         final int count = counter.getAndIncrement();
         return userService.getUser(PagePB.Request.newBuilder().setId(count).build()).getUser();
     }
 
-    @Benchmark
-    @BenchmarkMode({Mode.Throughput, Mode.AverageTime, Mode.SampleTime})
-    @OutputTimeUnit(TimeUnit.MILLISECONDS)
+//    @Benchmark
     public PagePB.Page listUser() throws Exception {
         final int count = counter.getAndIncrement();
         return userService.listUser(PagePB.Request.newBuilder().setPage(count).build()).getPage();
     }
 
     public static void main(String[] args) throws Exception {
-        System.out.println(args);
+        System.out.println(Arrays.toString(args));
         org.apache.commons.cli.Options options = new org.apache.commons.cli.Options();
 
         options.addOption(Option.builder().longOpt("warmupIterations").hasArg().build());
@@ -148,6 +140,8 @@ public class ClientPb {
                 .warmupTime(TimeValue.seconds(warmupTime))
                 .measurementIterations(measurementIterations)
                 .measurementTime(TimeValue.seconds(measurementTime))
+                .mode(Mode.Throughput)
+                .timeUnit(TimeUnit.MILLISECONDS)
                 .threads(CONCURRENCY)
                 .forks(1);
 
