@@ -123,7 +123,7 @@ public class ClientPb {
         Options opt;
         ChainedOptionsBuilder optBuilder = new OptionsBuilder()
                 .resultFormat(ResultFormatType.valueOf(format.toUpperCase()))
-                .result("jmh_" + System.currentTimeMillis() + "." + format)
+                .result(System.currentTimeMillis() + "." + format)
                 .include(ClientPb.class.getSimpleName())
                 .warmupIterations(warmupIterations)
                 .warmupTime(TimeValue.seconds(warmupTime))

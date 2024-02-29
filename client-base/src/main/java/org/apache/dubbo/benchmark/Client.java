@@ -104,7 +104,7 @@ public class Client extends AbstractClient {
         Options opt;
         ChainedOptionsBuilder optBuilder = new OptionsBuilder()
                 .resultFormat(ResultFormatType.valueOf(format.toUpperCase()))
-                .result("jmh_" + System.currentTimeMillis() + "." + format)
+                .result(System.currentTimeMillis() + "." + format)
                 .include(Client.class.getSimpleName())
                 .exclude(ClientPb.class.getSimpleName())
                 .exclude(ClientGrpc.class.getSimpleName())
