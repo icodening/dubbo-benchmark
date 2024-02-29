@@ -22,10 +22,12 @@ import org.openjdk.jmh.runner.options.OptionsBuilder;
 import org.openjdk.jmh.runner.options.TimeValue;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.StringJoiner;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -119,11 +121,28 @@ public class ClientPb {
         int measurementIterations = Integer.valueOf(line.getOptionValue("measurementIterations", "3"));
         int measurementTime = Integer.valueOf(line.getOptionValue("measurementTime", "10"));
         String format = line.getOptionValue("resultFormat", "json");
+        String benchmarkName = line.getOptionValue("benchmarkName", "benchmark");
+        String benchmarkNameDirName = new StringJoiner(File.separator)
+                .add(benchmarkName)
+                .toString();
+        File benchmarkNameDir = new File(benchmarkNameDirName);
+        if (!benchmarkNameDir.exists()) {
+            if (!benchmarkNameDir.mkdirs()) {
+                throw new IllegalStateException("Could not create directory '" + benchmarkName + "'");
+            }
+        }
+        if (!benchmarkNameDir.isDirectory()) {
+            throw new IllegalStateException("'" + benchmarkName + "' exists, but not a directory'");
+        }
 
+        String fileName = new StringJoiner(File.separator)
+                .add(benchmarkName)
+                .add(System.currentTimeMillis() + "." + format)
+                .toString();
         Options opt;
         ChainedOptionsBuilder optBuilder = new OptionsBuilder()
                 .resultFormat(ResultFormatType.valueOf(format.toUpperCase()))
-                .result(System.currentTimeMillis() + "." + format)
+                .result(fileName)
                 .include(ClientPb.class.getSimpleName())
                 .warmupIterations(warmupIterations)
                 .warmupTime(TimeValue.seconds(warmupTime))
