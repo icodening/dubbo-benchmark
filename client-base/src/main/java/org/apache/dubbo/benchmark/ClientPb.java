@@ -56,7 +56,7 @@ public class ClientPb {
                 .getState();
     }
 
-    //    @Benchmark
+    @Benchmark
     public boolean createUser() throws Exception {
         final int count = counter.getAndIncrement();
 
@@ -80,13 +80,13 @@ public class ClientPb {
 
     }
 
-    //    @Benchmark
+    @Benchmark
     public PagePB.User getUser() throws Exception {
         final int count = counter.getAndIncrement();
         return userService.getUser(PagePB.Request.newBuilder().setId(count).build()).getUser();
     }
 
-    //    @Benchmark
+    @Benchmark
     public PagePB.Page listUser() throws Exception {
         final int count = counter.getAndIncrement();
         return userService.listUser(PagePB.Request.newBuilder().setPage(count).build()).getPage();
@@ -94,20 +94,7 @@ public class ClientPb {
 
     public static void main(String[] args) throws Exception {
         System.out.println(Arrays.toString(args));
-        List<String> strings = new ArrayList<>();
-        for (String arg : args) {
-            String[] split = arg.split(",");
-            for (String argPair : split) {
-                if (argPair.startsWith("-")) {
-                    String[] kvs = argPair.split("=");
-                    strings.add(kvs[0]);
-                    strings.add(kvs[1]);
-                } else {
-                    strings.add(argPair);
-                }
-            }
-        }
-        args = strings.toArray(new String[0]);
+        args = ArgsParser.parse(args);
         System.out.println("new args: " +Arrays.toString(args));
 
         org.apache.commons.cli.Options options = new org.apache.commons.cli.Options();
@@ -156,6 +143,8 @@ public class ClientPb {
                 .measurementIterations(measurementIterations)
                 .measurementTime(TimeValue.seconds(measurementTime))
                 .mode(Mode.Throughput)
+                .mode(Mode.AverageTime)
+                .mode(Mode.SampleTime)
                 .timeUnit(TimeUnit.MILLISECONDS)
                 .threads(CONCURRENCY)
                 .forks(1);

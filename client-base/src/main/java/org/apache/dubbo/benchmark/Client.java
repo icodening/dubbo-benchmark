@@ -88,20 +88,7 @@ public class Client extends AbstractClient {
 
     public static void main(String[] args) throws Exception {
         System.out.println(Arrays.toString(args));
-        List<String> strings = new ArrayList<>();
-        for (String arg : args) {
-            String[] split = arg.split(",");
-            for (String argPair : split) {
-                if (argPair.startsWith("-")) {
-                    String[] kvs = argPair.split("=");
-                    strings.add(kvs[0]);
-                    strings.add(kvs[1]);
-                } else {
-                    strings.add(argPair);
-                }
-            }
-        }
-        args = strings.toArray(new String[0]);
+        args = ArgsParser.parse(args);
         System.out.println("new args: " +Arrays.toString(args));
         org.apache.commons.cli.Options options = new org.apache.commons.cli.Options();
 
