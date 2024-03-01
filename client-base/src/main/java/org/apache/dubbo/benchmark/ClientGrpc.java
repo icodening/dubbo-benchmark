@@ -124,7 +124,7 @@ public class ClientGrpc {
         int measurementIterations = Integer.valueOf(line.getOptionValue("measurementIterations", "3"));
         int measurementTime = Integer.valueOf(line.getOptionValue("measurementTime", "10"));
         String format = line.getOptionValue("resultFormat", "json");
-        String benchmarkName = line.getOptionValue("benchmarkName", "benchmark");
+        String benchmarkName = line.getOptionValue("benchmarkName", "benchmark-result");
         String benchmarkNameDirName = new StringJoiner(File.separator)
                 .add(benchmarkName)
                 .toString();
