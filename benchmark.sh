@@ -44,7 +44,7 @@ SERVER="localhost"
 PORT="8080"
 OUTPUT=""
 OPTIND=1
-OTHERARGS=$2
+OTHERARGS=""
 
 while getopts "m:s:p:f:a:" opt; do
     case "$opt" in
