@@ -92,6 +92,7 @@ public class Client extends AbstractClient {
         options.addOption(Option.builder().longOpt("measurementIterations").hasArg().build());
         options.addOption(Option.builder().longOpt("measurementTime").hasArg().build());
         options.addOption(Option.builder().longOpt("resultFormat").hasArg().build());
+        options.addOption(Option.builder().longOpt("benchmarkName").hasArg().build());
 
         CommandLineParser parser = new DefaultParser();
 
