@@ -22,11 +22,11 @@ java_options() {
     if [ "x${MODE}" = "xprofiling" ]; then
         # 检查目录是否存在
         profiling_directory="profiling/${PROJECT_DIR}"
-        if [ ! -d "$profiling_directory" ]; then
-            echo "creating profiling directory：$profiling_directory"
-            mkdir -p "$profiling_directory"
+        if [ ! -d "${profiling_directory}" ]; then
+            echo "creating profiling directory：${profiling_directory}"
+            mkdir -p "${profiling_directory}"
         else
-            echo "profiling directory exists：$profiling_directory"
+            echo "profiling directory exists：${profiling_directory}"
         fi
 
         if [ "${OS}" = "Darwin" ]; then
