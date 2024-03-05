@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+ARCH=$(uname -m)
+OS=$(uname -s)
 usage() {
     echo "Usage: ${PROGRAM_NAME} command dirname"
     echo "command: [m|s|p|f]"
@@ -18,11 +20,19 @@ build() {
 java_options() {
     JAVA_OPTIONS="-server -Xmx1g -Xms1g -XX:MaxDirectMemorySize=1g -XX:+UseG1GC"
     if [ "x${MODE}" = "xprofiling" ]; then
-        JAVA_OPTIONS="${JAVA_OPTIONS} \
-            -XX:+UnlockCommercialFeatures \
-            -XX:+FlightRecorder \
-            -XX:StartFlightRecording=duration=30s,filename=${PROJECT_DIR}.jfr \
-            -XX:FlightRecorderOptions=stackdepth=256"
+        if [ "${OS}" = "Darwin" ]; then
+            JAVA_OPTIONS="${JAVA_OPTIONS} -agentpath:async-profiler/libasyncProfiler.dylib=start,cstack=no,event=cpu,file=%t.jfr"
+            echo "Using: Darwin"
+        elif [ "${ARCH}" = "x86_64" ]; then
+            JAVA_OPTIONS="${JAVA_OPTIONS} -agentpath:async-profiler/libasyncProfiler_x86_64.so=start,cstack=no,event=cpu,file=%t.jfr"
+            echo "Using: x86_64"
+        elif [ "${ARCH}" = "aarch64" ]; then
+            JAVA_OPTIONS="${JAVA_OPTIONS} -agentpath:async-profiler/libasyncProfiler_aarch64.so=start,cstack=no,event=cpu,file=%t.jfr"
+            echo "Using: aarch64"
+        else
+            echo "Unsupported platform: ${OS} ${ARCH}"
+            exit 1
+        fi
     fi
 }
 
