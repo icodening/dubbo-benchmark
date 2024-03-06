@@ -18,7 +18,7 @@ build() {
 }
 
 java_options() {
-    JAVA_OPTIONS="-server -Xmx1g -Xms1g -XX:MaxDirectMemorySize=1g -XX:+UseG1GC"
+    JAVA_OPTIONS="-server -Xmx1g -Xms1g -XX:MaxDirectMemorySize=1g -XX:+UseG1GC -XX:+DisableAttachMechanism"
     if [ "x${MODE}" = "xprofiling" ]; then
         # 检查目录是否存在
         profiling_directory="profiling/${PROJECT_DIR}"
@@ -30,13 +30,13 @@ java_options() {
         fi
 
         if [ "${OS}" = "Darwin" ]; then
-            JAVA_OPTIONS="${JAVA_OPTIONS} -agentpath:async-profiler/libasyncProfiler.dylib=start,all-user=true,fdtransfer=true,cstack=no,event=cpu,file=${profiling_directory}/%t.jfr"
+            JAVA_OPTIONS="${JAVA_OPTIONS} -agentpath:async-profiler/libasyncProfiler.dylib=start,cstack=no,event=cpu,file=${profiling_directory}/%t.jfr"
             echo "Using: Darwin"
         elif [ "${ARCH}" = "x86_64" ]; then
-            JAVA_OPTIONS="${JAVA_OPTIONS} -agentpath:async-profiler/libasyncProfiler_x86_64.so=start,all-user=true,fdtransfer=true,cstack=no,event=cpu,file=${profiling_directory}/%t.jfr"
+            JAVA_OPTIONS="${JAVA_OPTIONS} -agentpath:async-profiler/libasyncProfiler_x86_64.so=start,cstack=no,event=ctimer,file=${profiling_directory}/%t.jfr"
             echo "Using: x86_64"
         elif [ "${ARCH}" = "aarch64" ]; then
-            JAVA_OPTIONS="${JAVA_OPTIONS} -agentpath:async-profiler/libasyncProfiler_aarch64.so=start,all-user=true,fdtransfer=true,cstack=no,event=cpu,file=${profiling_directory}/%t.jfr"
+            JAVA_OPTIONS="${JAVA_OPTIONS} -agentpath:async-profiler/libasyncProfiler_aarch64.so=start,cstack=no,event=ctimer,file=${profiling_directory}/%t.jfr"
             echo "Using: aarch64"
         else
             echo "Unsupported platform: ${OS} ${ARCH}"
