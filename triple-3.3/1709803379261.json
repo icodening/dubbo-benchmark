@@ -1,0 +1,236 @@
+[
+    {
+        "jmhVersion" : "1.21",
+        "benchmark" : "org.apache.dubbo.benchmark.ClientPb.createUser",
+        "mode" : "thrpt",
+        "threads" : 32,
+        "forks" : 1,
+        "jvm" : "/opt/hostedtoolcache/Java_Zulu_jdk/8.0.402-6/x64/jre/bin/java",
+        "jvmArgs" : [
+            "-Xmx1g",
+            "-Xms1g",
+            "-XX:MaxDirectMemorySize=1g",
+            "-XX:+UseG1GC",
+            "-XX:+DisableAttachMechanism",
+            "-agentpath:async-profiler/libasyncProfiler_x86_64.so=start,cstack=no,event=ctimer,file=profiling/dubbo-triple-client/%t.jfr",
+            "-Dserver.host=localhost",
+            "-Dserver.port=8080",
+            "-Dbenchmark.output="
+        ],
+        "jdkVersion" : "1.8.0_402",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "25.402-b06",
+        "warmupIterations" : 3,
+        "warmupTime" : "10 s",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 3,
+        "measurementTime" : "10 s",
+        "measurementBatchSize" : 1,
+        "primaryMetric" : {
+            "score" : 11.95132256962826,
+            "scoreError" : 1.2658034167170829,
+            "scoreConfidence" : [
+                10.685519152911178,
+                13.217125986345343
+            ],
+            "scorePercentiles" : {
+                "0.0" : 11.881561048857101,
+                "50.0" : 11.95208599831902,
+                "90.0" : 12.020320661708656,
+                "95.0" : 12.020320661708656,
+                "99.0" : 12.020320661708656,
+                "99.9" : 12.020320661708656,
+                "99.99" : 12.020320661708656,
+                "99.999" : 12.020320661708656,
+                "99.9999" : 12.020320661708656,
+                "100.0" : 12.020320661708656
+            },
+            "scoreUnit" : "ops/ms",
+            "rawData" : [
+                [
+                    11.881561048857101,
+                    12.020320661708656,
+                    11.95208599831902
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.21",
+        "benchmark" : "org.apache.dubbo.benchmark.ClientPb.existUser",
+        "mode" : "thrpt",
+        "threads" : 32,
+        "forks" : 1,
+        "jvm" : "/opt/hostedtoolcache/Java_Zulu_jdk/8.0.402-6/x64/jre/bin/java",
+        "jvmArgs" : [
+            "-Xmx1g",
+            "-Xms1g",
+            "-XX:MaxDirectMemorySize=1g",
+            "-XX:+UseG1GC",
+            "-XX:+DisableAttachMechanism",
+            "-agentpath:async-profiler/libasyncProfiler_x86_64.so=start,cstack=no,event=ctimer,file=profiling/dubbo-triple-client/%t.jfr",
+            "-Dserver.host=localhost",
+            "-Dserver.port=8080",
+            "-Dbenchmark.output="
+        ],
+        "jdkVersion" : "1.8.0_402",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "25.402-b06",
+        "warmupIterations" : 3,
+        "warmupTime" : "10 s",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 3,
+        "measurementTime" : "10 s",
+        "measurementBatchSize" : 1,
+        "primaryMetric" : {
+            "score" : 12.591312429837396,
+            "scoreError" : 0.5875048706883768,
+            "scoreConfidence" : [
+                12.003807559149019,
+                13.178817300525774
+            ],
+            "scorePercentiles" : {
+                "0.0" : 12.556596988249437,
+                "50.0" : 12.597130228265744,
+                "90.0" : 12.620210072997011,
+                "95.0" : 12.620210072997011,
+                "99.0" : 12.620210072997011,
+                "99.9" : 12.620210072997011,
+                "99.99" : 12.620210072997011,
+                "99.999" : 12.620210072997011,
+                "99.9999" : 12.620210072997011,
+                "100.0" : 12.620210072997011
+            },
+            "scoreUnit" : "ops/ms",
+            "rawData" : [
+                [
+                    12.620210072997011,
+                    12.597130228265744,
+                    12.556596988249437
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.21",
+        "benchmark" : "org.apache.dubbo.benchmark.ClientPb.getUser",
+        "mode" : "thrpt",
+        "threads" : 32,
+        "forks" : 1,
+        "jvm" : "/opt/hostedtoolcache/Java_Zulu_jdk/8.0.402-6/x64/jre/bin/java",
+        "jvmArgs" : [
+            "-Xmx1g",
+            "-Xms1g",
+            "-XX:MaxDirectMemorySize=1g",
+            "-XX:+UseG1GC",
+            "-XX:+DisableAttachMechanism",
+            "-agentpath:async-profiler/libasyncProfiler_x86_64.so=start,cstack=no,event=ctimer,file=profiling/dubbo-triple-client/%t.jfr",
+            "-Dserver.host=localhost",
+            "-Dserver.port=8080",
+            "-Dbenchmark.output="
+        ],
+        "jdkVersion" : "1.8.0_402",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "25.402-b06",
+        "warmupIterations" : 3,
+        "warmupTime" : "10 s",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 3,
+        "measurementTime" : "10 s",
+        "measurementBatchSize" : 1,
+        "primaryMetric" : {
+            "score" : 12.065701290542838,
+            "scoreError" : 0.7777542131040677,
+            "scoreConfidence" : [
+                11.287947077438771,
+                12.843455503646906
+            ],
+            "scorePercentiles" : {
+                "0.0" : 12.029864157121864,
+                "50.0" : 12.054393064060216,
+                "90.0" : 12.112846650446432,
+                "95.0" : 12.112846650446432,
+                "99.0" : 12.112846650446432,
+                "99.9" : 12.112846650446432,
+                "99.99" : 12.112846650446432,
+                "99.999" : 12.112846650446432,
+                "99.9999" : 12.112846650446432,
+                "100.0" : 12.112846650446432
+            },
+            "scoreUnit" : "ops/ms",
+            "rawData" : [
+                [
+                    12.112846650446432,
+                    12.029864157121864,
+                    12.054393064060216
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.21",
+        "benchmark" : "org.apache.dubbo.benchmark.ClientPb.listUser",
+        "mode" : "thrpt",
+        "threads" : 32,
+        "forks" : 1,
+        "jvm" : "/opt/hostedtoolcache/Java_Zulu_jdk/8.0.402-6/x64/jre/bin/java",
+        "jvmArgs" : [
+            "-Xmx1g",
+            "-Xms1g",
+            "-XX:MaxDirectMemorySize=1g",
+            "-XX:+UseG1GC",
+            "-XX:+DisableAttachMechanism",
+            "-agentpath:async-profiler/libasyncProfiler_x86_64.so=start,cstack=no,event=ctimer,file=profiling/dubbo-triple-client/%t.jfr",
+            "-Dserver.host=localhost",
+            "-Dserver.port=8080",
+            "-Dbenchmark.output="
+        ],
+        "jdkVersion" : "1.8.0_402",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "25.402-b06",
+        "warmupIterations" : 3,
+        "warmupTime" : "10 s",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 3,
+        "measurementTime" : "10 s",
+        "measurementBatchSize" : 1,
+        "primaryMetric" : {
+            "score" : 10.136897993841224,
+            "scoreError" : 2.5957642639688205,
+            "scoreConfidence" : [
+                7.541133729872403,
+                12.732662257810045
+            ],
+            "scorePercentiles" : {
+                "0.0" : 9.996211198156715,
+                "50.0" : 10.133758353331949,
+                "90.0" : 10.280724430035008,
+                "95.0" : 10.280724430035008,
+                "99.0" : 10.280724430035008,
+                "99.9" : 10.280724430035008,
+                "99.99" : 10.280724430035008,
+                "99.999" : 10.280724430035008,
+                "99.9999" : 10.280724430035008,
+                "100.0" : 10.280724430035008
+            },
+            "scoreUnit" : "ops/ms",
+            "rawData" : [
+                [
+                    10.280724430035008,
+                    10.133758353331949,
+                    9.996211198156715
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    }
+]
+
+
