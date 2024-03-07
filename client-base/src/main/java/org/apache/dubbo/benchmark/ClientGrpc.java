@@ -22,12 +22,10 @@ import org.openjdk.jmh.runner.options.OptionsBuilder;
 import org.openjdk.jmh.runner.options.TimeValue;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.StringJoiner;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -106,47 +104,16 @@ public class ClientGrpc {
         System.out.println(Arrays.toString(args));
         args = ArgsParser.parse(args);
         System.out.println("new args: " +Arrays.toString(args));
-        org.apache.commons.cli.Options options = new org.apache.commons.cli.Options();
-
-        options.addOption(Option.builder().longOpt("warmupIterations").hasArg().build());
-        options.addOption(Option.builder().longOpt("warmupTime").hasArg().build());
-        options.addOption(Option.builder().longOpt("measurementIterations").hasArg().build());
-        options.addOption(Option.builder().longOpt("measurementTime").hasArg().build());
-        options.addOption(Option.builder().longOpt("resultFormat").hasArg().build());
-        options.addOption(Option.builder().longOpt("benchmarkName").hasArg().build());
-
-        CommandLineParser parser = new DefaultParser();
-
-        CommandLine line = parser.parse(options, args);
-
-        int warmupIterations = Integer.valueOf(line.getOptionValue("warmupIterations", "3"));
-        int warmupTime = Integer.valueOf(line.getOptionValue("warmupTime", "10"));
-        int measurementIterations = Integer.valueOf(line.getOptionValue("measurementIterations", "3"));
-        int measurementTime = Integer.valueOf(line.getOptionValue("measurementTime", "10"));
-        String format = line.getOptionValue("resultFormat", "json");
-        String benchmarkName = line.getOptionValue("benchmarkName", "benchmark-result");
-        String benchmarkNameDirName = new StringJoiner(File.separator)
-                .add(benchmarkName)
-                .toString();
-        File benchmarkNameDir = new File(benchmarkNameDirName);
-        if (!benchmarkNameDir.exists()) {
-            if (!benchmarkNameDir.mkdirs()) {
-                throw new IllegalStateException("Could not create directory '" + benchmarkName + "'");
-            }
-        }
-        if (!benchmarkNameDir.isDirectory()) {
-            throw new IllegalStateException("'" + benchmarkName + "' exists, but not a directory'");
-        }
-
-        String fileName = new StringJoiner(File.separator)
-                .add(benchmarkName)
-                .add(System.currentTimeMillis() + "." + format)
-                .toString();
-
+        ClientHelper.Arguments arguments = ClientHelper.parseArguments(args);
+        int warmupIterations = arguments.getWarmupIterations();
+        int warmupTime = arguments.getWarmupTime();
+        int measurementIterations = arguments.getMeasurementIterations();
+        int measurementTime = arguments.getMeasurementTime();
+        String format = arguments.getResultFormat();
         Options opt;
         ChainedOptionsBuilder optBuilder = new OptionsBuilder()
                 .resultFormat(ResultFormatType.valueOf(format.toUpperCase()))
-                .result(fileName)
+                .result(System.currentTimeMillis() + "." + format)
                 .include(ClientGrpc.class.getSimpleName())
                 .warmupIterations(warmupIterations)
                 .warmupTime(TimeValue.seconds(warmupTime))

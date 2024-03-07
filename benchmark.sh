@@ -20,28 +20,22 @@ build() {
 java_options() {
     JAVA_OPTIONS="-server -Xmx1g -Xms1g -XX:MaxDirectMemorySize=1g -XX:+UseG1GC -XX:+DisableAttachMechanism"
     if [ "x${MODE}" = "xprofiling" ]; then
-        # 检查目录是否存在
-        profiling_directory="profiling/${PROJECT_DIR}"
-        if [ ! -d "${profiling_directory}" ]; then
-            echo "creating profiling directory：${profiling_directory}"
-            mkdir -p "${profiling_directory}"
-        else
-            echo "profiling directory exists：${profiling_directory}"
-        fi
-
+        AGENT="-agentpath:async-profiler"
         if [ "${OS}" = "Darwin" ]; then
-            JAVA_OPTIONS="${JAVA_OPTIONS} -agentpath:async-profiler/libasyncProfiler.dylib=start,cstack=no,event=cpu,file=${profiling_directory}/%t.jfr"
+            AGENT="${AGENT}/libasyncProfiler.dylib=event=cpu,"
             echo "Using: Darwin"
         elif [ "${ARCH}" = "x86_64" ]; then
-            JAVA_OPTIONS="${JAVA_OPTIONS} -agentpath:async-profiler/libasyncProfiler_x86_64.so=start,cstack=no,event=ctimer,file=${profiling_directory}/%t.jfr"
+            AGENT="${AGENT}/libasyncProfiler_x86_64.so=event=ctimer,"
             echo "Using: x86_64"
         elif [ "${ARCH}" = "aarch64" ]; then
-            JAVA_OPTIONS="${JAVA_OPTIONS} -agentpath:async-profiler/libasyncProfiler_aarch64.so=start,cstack=no,event=ctimer,file=${profiling_directory}/%t.jfr"
+            AGENT="${AGENT}/libasyncProfiler_aarch64.so=event=ctimer,"
             echo "Using: aarch64"
         else
             echo "Unsupported platform: ${OS} ${ARCH}"
             exit 1
         fi
+        AGENT="${AGENT}start,cstack=no,file=${PROJECT_DIR}/%t.jfr"
+        JAVA_OPTIONS="${JAVA_OPTIONS} ${AGENT}"
     fi
 }
 
