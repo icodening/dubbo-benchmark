@@ -14,7 +14,17 @@ usage() {
 }
 
 build() {
-    mvn --projects benchmark-base,client-base,server-base,${PROJECT_DIR} clean package
+    if [ "${OS}" = "Darwin" ]; then
+        nproc() {
+            sysctl -n hw.physicalcpu
+        }
+    else
+        nproc() {
+            nproc
+        }
+    fi
+    core=$(nproc)
+    mvn --projects benchmark-base,client-base,server-base,${PROJECT_DIR} clean package -T ${core}
 }
 
 java_options() {
