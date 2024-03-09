@@ -24,7 +24,7 @@ build() {
         }
     fi
     core=$(nproc)
-    mvn --projects benchmark-base,client-base,server-base,${PROJECT_DIR} clean package -T ${core}
+    mvn -T ${core} --projects benchmark-base,client-base,server-base,${PROJECT_DIR} clean package
 }
 
 java_options() {
