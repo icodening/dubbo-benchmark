@@ -14,13 +14,7 @@ usage() {
 }
 
 build() {
-    CORE=1
-    if [ "${OS}" = "Darwin" ]; then
-        CORE=$(sysctl -n hw.physicalcpu)
-    elif [ "${OS}" = "Linux" ]; then
-        CORE=$(nproc)
-    fi
-    mvn -T ${CORE} --projects benchmark-base,client-base,server-base,${PROJECT_DIR} clean package
+    mvn --projects benchmark-base,client-base,server-base,${PROJECT_DIR} clean package
 }
 
 java_options() {
