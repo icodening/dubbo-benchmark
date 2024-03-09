@@ -20,7 +20,6 @@ build() {
     elif [ "${OS}" = "Linux" ]; then
         CORE=$(nproc)
     fi
-    echo ${CORE}
     mvn -T ${CORE} --projects benchmark-base,client-base,server-base,${PROJECT_DIR} clean package
 }
 
