@@ -106,8 +106,8 @@ public class ClientPb {
                 .measurementIterations(measurementIterations)
                 .measurementTime(TimeValue.seconds(measurementTime))
                 .mode(Mode.Throughput)
-                .mode(Mode.AverageTime)
-                .mode(Mode.SampleTime)
+//                .mode(Mode.AverageTime)
+//                .mode(Mode.SampleTime)
                 .timeUnit(TimeUnit.MILLISECONDS)
                 .threads(CONCURRENCY)
                 .forks(1);
