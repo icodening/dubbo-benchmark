@@ -43,7 +43,7 @@ public class ClientPb {
         context.close();
     }
 
-//    @Benchmark
+    @Benchmark
     public boolean existUser() throws Exception {
         final int count = counter.getAndIncrement();
         return userService.existUser(PagePB.Request.newBuilder().setEmail(String.valueOf(count)).build())
@@ -74,13 +74,13 @@ public class ClientPb {
 
     }
 
-//    @Benchmark
+    @Benchmark
     public PagePB.User getUser() throws Exception {
         final int count = counter.getAndIncrement();
         return userService.getUser(PagePB.Request.newBuilder().setId(count).build()).getUser();
     }
 
-//    @Benchmark
+    @Benchmark
     public PagePB.Page listUser() throws Exception {
         final int count = counter.getAndIncrement();
         return userService.listUser(PagePB.Request.newBuilder().setPage(count).build()).getPage();
@@ -106,8 +106,8 @@ public class ClientPb {
                 .measurementIterations(measurementIterations)
                 .measurementTime(TimeValue.seconds(measurementTime))
                 .mode(Mode.Throughput)
-//                .mode(Mode.AverageTime)
-//                .mode(Mode.SampleTime)
+                .mode(Mode.AverageTime)
+                .mode(Mode.SampleTime)
                 .timeUnit(TimeUnit.MILLISECONDS)
                 .threads(CONCURRENCY)
                 .forks(1);
