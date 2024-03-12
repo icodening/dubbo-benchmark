@@ -1,16 +1,10 @@
 package org.apache.dubbo.benchmark;
 
 import com.google.protobuf.util.Timestamps;
-import org.apache.commons.cli.CommandLine;
-import org.apache.commons.cli.CommandLineParser;
-import org.apache.commons.cli.DefaultParser;
-import org.apache.commons.cli.Option;
 import org.apache.dubbo.benchmark.bean.DubboUserServiceGrpc;
 import org.apache.dubbo.benchmark.bean.PagePB;
 import org.openjdk.jmh.annotations.Benchmark;
-import org.openjdk.jmh.annotations.BenchmarkMode;
 import org.openjdk.jmh.annotations.Mode;
-import org.openjdk.jmh.annotations.OutputTimeUnit;
 import org.openjdk.jmh.annotations.Scope;
 import org.openjdk.jmh.annotations.State;
 import org.openjdk.jmh.annotations.TearDown;
@@ -50,8 +44,6 @@ public class ClientGrpc {
     }
 
     @Benchmark
-    @BenchmarkMode({Mode.Throughput, Mode.AverageTime, Mode.SampleTime})
-    @OutputTimeUnit(TimeUnit.MILLISECONDS)
     public boolean existUser() throws Exception {
         final int count = counter.getAndIncrement();
         return userService.existUser(PagePB.Request.newBuilder().setEmail(String.valueOf(count)).build())
@@ -59,8 +51,6 @@ public class ClientGrpc {
     }
 
     @Benchmark
-    @BenchmarkMode({Mode.Throughput, Mode.AverageTime, Mode.SampleTime})
-    @OutputTimeUnit(TimeUnit.MILLISECONDS)
     public boolean createUser() throws Exception {
         final int count = counter.getAndIncrement();
 
@@ -85,16 +75,12 @@ public class ClientGrpc {
     }
 
     @Benchmark
-    @BenchmarkMode({Mode.Throughput, Mode.AverageTime, Mode.SampleTime})
-    @OutputTimeUnit(TimeUnit.MILLISECONDS)
     public PagePB.User getUser() throws Exception {
         final int count = counter.getAndIncrement();
         return userService.getUser(PagePB.Request.newBuilder().setId(count).build()).getUser();
     }
 
     @Benchmark
-    @BenchmarkMode({Mode.Throughput, Mode.AverageTime, Mode.SampleTime})
-    @OutputTimeUnit(TimeUnit.MILLISECONDS)
     public PagePB.Page listUser() throws Exception {
         final int count = counter.getAndIncrement();
         return userService.listUser(PagePB.Request.newBuilder().setPage(count).build()).getPage();
@@ -119,6 +105,10 @@ public class ClientGrpc {
                 .warmupTime(TimeValue.seconds(warmupTime))
                 .measurementIterations(measurementIterations)
                 .measurementTime(TimeValue.seconds(measurementTime))
+                .mode(Mode.Throughput)
+                .mode(Mode.AverageTime)
+                .mode(Mode.SampleTime)
+                .timeUnit(TimeUnit.MILLISECONDS)
                 .threads(CONCURRENCY)
                 .forks(1);
 
