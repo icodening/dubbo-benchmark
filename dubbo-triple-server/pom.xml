@@ -10,10 +10,6 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>dubbo-triple-server</artifactId>
-    <properties>
-        <protoc.version>3.19.4</protoc.version>
-        <grpc.version>1.44.1</grpc.version>
-    </properties>
 
     <dependencies>
         <dependency>
