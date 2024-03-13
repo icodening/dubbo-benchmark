@@ -8,12 +8,9 @@ import org.openjdk.jmh.annotations.Mode;
 import org.openjdk.jmh.annotations.Scope;
 import org.openjdk.jmh.annotations.State;
 import org.openjdk.jmh.annotations.TearDown;
-import org.openjdk.jmh.results.format.ResultFormatType;
 import org.openjdk.jmh.runner.Runner;
 import org.openjdk.jmh.runner.options.ChainedOptionsBuilder;
 import org.openjdk.jmh.runner.options.Options;
-import org.openjdk.jmh.runner.options.OptionsBuilder;
-import org.openjdk.jmh.runner.options.TimeValue;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.io.IOException;
@@ -88,23 +85,11 @@ public class ClientPb {
 
     public static void main(String[] args) throws Exception {
         System.out.println(Arrays.toString(args));
-        args = ArgsParser.parse(args);
-        System.out.println("new args: " + Arrays.toString(args));
         ClientHelper.Arguments arguments = ClientHelper.parseArguments(args);
-        int warmupIterations = arguments.getWarmupIterations();
-        int warmupTime = arguments.getWarmupTime();
-        int measurementIterations = arguments.getMeasurementIterations();
-        int measurementTime = arguments.getMeasurementTime();
         String format = arguments.getResultFormat();
-        Options opt;
-        ChainedOptionsBuilder optBuilder = new OptionsBuilder()
-                .resultFormat(ResultFormatType.valueOf(format.toUpperCase()))
+        ChainedOptionsBuilder optBuilder = ClientHelper.newBaseChainedOptionsBuilder(arguments)
                 .result(System.currentTimeMillis() + "." + format)
                 .include(ClientPb.class.getSimpleName())
-                .warmupIterations(warmupIterations)
-                .warmupTime(TimeValue.seconds(warmupTime))
-                .measurementIterations(measurementIterations)
-                .measurementTime(TimeValue.seconds(measurementTime))
                 .mode(Mode.Throughput)
                 .mode(Mode.AverageTime)
                 .mode(Mode.SampleTime)
@@ -112,16 +97,8 @@ public class ClientPb {
                 .threads(CONCURRENCY)
                 .forks(1);
 
-        opt = doOptions(optBuilder).build();
+        Options opt = optBuilder.build();
 
         new Runner(opt).run();
-    }
-
-    private static ChainedOptionsBuilder doOptions(ChainedOptionsBuilder optBuilder) {
-        String output = System.getProperty("benchmark.output");
-        if (output != null && !output.trim().isEmpty()) {
-            optBuilder.output(output);
-        }
-        return optBuilder;
     }
 }

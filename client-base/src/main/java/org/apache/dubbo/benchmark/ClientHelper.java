@@ -22,36 +22,53 @@ import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
+import org.openjdk.jmh.results.format.ResultFormatType;
+import org.openjdk.jmh.runner.options.ChainedOptionsBuilder;
+import org.openjdk.jmh.runner.options.OptionsBuilder;
+import org.openjdk.jmh.runner.options.TimeValue;
+
+import java.lang.reflect.Field;
 
 class ClientHelper {
 
     private ClientHelper() {
-
     }
 
     static Options getSupports() {
-        Options options = new org.apache.commons.cli.Options();
-        options.addOption(Option.builder().longOpt("warmupIterations").hasArg().build());
-        options.addOption(Option.builder().longOpt("warmupTime").hasArg().build());
-        options.addOption(Option.builder().longOpt("measurementIterations").hasArg().build());
-        options.addOption(Option.builder().longOpt("measurementTime").hasArg().build());
-        options.addOption(Option.builder().longOpt("resultFormat").hasArg().build());
+        Options options = new Options();
+        String[] supportArgumentNames = Arguments.getSupportArgumentNames();
+        for (String supportArgumentName : supportArgumentNames) {
+            options.addOption(Option.builder().longOpt(supportArgumentName).hasArg().build());
+        }
         return options;
     }
 
-    static CommandLine parseLine(String[] args) throws ParseException {
+    private static CommandLine parseLine(String[] args) throws ParseException {
         CommandLineParser parser = new DefaultParser();
         return parser.parse(getSupports(), args);
     }
 
     static Arguments parseArguments(String[] args) throws ParseException {
-        CommandLine line = parseLine(args);
-        int warmupIterations = Integer.parseInt(line.getOptionValue("warmupIterations", "3"));
-        int warmupTime = Integer.parseInt(line.getOptionValue("warmupTime", "10"));
-        int measurementIterations = Integer.parseInt(line.getOptionValue("measurementIterations", "3"));
-        int measurementTime = Integer.parseInt(line.getOptionValue("measurementTime", "10"));
-        String format = line.getOptionValue("resultFormat", "json");
-        return new Arguments(warmupIterations, warmupTime, measurementIterations, measurementTime, format);
+        return new Arguments(parseLine(args));
+    }
+
+    static ChainedOptionsBuilder newBaseChainedOptionsBuilder(Arguments arguments) {
+        int warmupIterations = arguments.getWarmupIterations();
+        int warmupTime = arguments.getWarmupTime();
+        int measurementIterations = arguments.getMeasurementIterations();
+        int measurementTime = arguments.getMeasurementTime();
+        String format = arguments.getResultFormat();
+        String output = System.getProperty("benchmark.output");
+        ChainedOptionsBuilder optBuilder = new OptionsBuilder()
+                .resultFormat(ResultFormatType.valueOf(format.toUpperCase()))
+                .warmupIterations(warmupIterations)
+                .warmupTime(TimeValue.seconds(warmupTime))
+                .measurementIterations(measurementIterations)
+                .measurementTime(TimeValue.seconds(measurementTime));
+        if (output != null && !output.trim().isEmpty()) {
+            optBuilder.output(output);
+        }
+        return optBuilder;
     }
 
     static class Arguments {
@@ -66,15 +83,13 @@ class ClientHelper {
 
         public String resultFormat = "json";
 
-        public Arguments() {
-        }
 
-        public Arguments(int warmupIterations, int warmupTime, int measurementIterations, int measurementTime, String resultFormat) {
-            this.warmupIterations = warmupIterations;
-            this.warmupTime = warmupTime;
-            this.measurementIterations = measurementIterations;
-            this.measurementTime = measurementTime;
-            this.resultFormat = resultFormat;
+        private Arguments(CommandLine line) {
+            this.warmupIterations = Integer.parseInt(line.getOptionValue("warmupIterations", "3"));
+            this.warmupTime = Integer.parseInt(line.getOptionValue("warmupTime", "10"));
+            this.measurementIterations = Integer.parseInt(line.getOptionValue("measurementIterations", "3"));
+            this.measurementTime = Integer.parseInt(line.getOptionValue("measurementTime", "10"));
+            this.resultFormat = line.getOptionValue("resultFormat", "json");
         }
 
         public int getWarmupIterations() {
@@ -115,6 +130,15 @@ class ClientHelper {
 
         public void setResultFormat(String resultFormat) {
             this.resultFormat = resultFormat;
+        }
+
+        private static String[] getSupportArgumentNames() {
+            Field[] declaredFields = Arguments.class.getDeclaredFields();
+            String[] names = new String[declaredFields.length];
+            for (int i = 0; i < declaredFields.length; i++) {
+                names[i] = declaredFields[i].getName();
+            }
+            return names;
         }
     }
 }
