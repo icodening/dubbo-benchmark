@@ -10,7 +10,6 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>dubbo-pb-server</artifactId>
-
     <dependencies>
         <dependency>
             <groupId>org.apache.dubbo</groupId>
@@ -26,6 +25,11 @@
             <groupId>com.google.protobuf</groupId>
             <artifactId>protobuf-java-util</artifactId>
             <version>3.7.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.dubbo.extensions</groupId>
+            <artifactId>dubbo-serialization-protobuf</artifactId>
+            <version>${dubbo-serialization-extension.version}</version>
         </dependency>
     </dependencies>
 
