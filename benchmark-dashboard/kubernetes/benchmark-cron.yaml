@@ -16,7 +16,7 @@ spec:
               securityContext:
                 runAsUser: 1000
                 runAsGroup: 1000
-              image: registry.cn-shenzhen.aliyuncs.com/beinglang/dev-base:v1.0
+              image: replace-your-docker-image
               command: [ "/bin/bash", "/home/dev/script/start.sh" ]
               env:
                 - name: BENCHMARK_NAME
@@ -83,7 +83,7 @@ spec:
               securityContext:
                 runAsUser: 1000
                 runAsGroup: 1000
-              image: registry.cn-shenzhen.aliyuncs.com/beinglang/dev-base:v1.0
+              image: replace-your-docker-image
               command: [ "/bin/bash", "/home/dev/script/start.sh" ]
               env:
                 - name: BENCHMARK_NAME
@@ -152,7 +152,7 @@ spec:
               securityContext:
                 runAsUser: 1000
                 runAsGroup: 1000
-              image: registry.cn-shenzhen.aliyuncs.com/beinglang/dev-base:v1.0
+              image: replace-your-docker-image
               command: [ "/bin/bash", "/home/dev/script/start.sh" ]
               env:
                 - name: BENCHMARK_NAME
@@ -222,7 +222,7 @@ spec:
               securityContext:
                 runAsUser: 1000
                 runAsGroup: 1000
-              image: registry.cn-shenzhen.aliyuncs.com/beinglang/dev-base:v1.0
+              image: replace-your-docker-image
               command: [ "/bin/bash", "/home/dev/script/start.sh" ]
               env:
                 - name: BENCHMARK_NAME
@@ -291,7 +291,7 @@ spec:
               securityContext:
                 runAsUser: 1000
                 runAsGroup: 1000
-              image: registry.cn-shenzhen.aliyuncs.com/beinglang/dev-base:v1.0
+              image: replace-your-docker-image
               command: [ "/bin/bash", "/home/dev/script/start.sh" ]
               env:
                 - name: BENCHMARK_NAME
@@ -361,7 +361,7 @@ spec:
               securityContext:
                 runAsUser: 1000
                 runAsGroup: 1000
-              image: registry.cn-shenzhen.aliyuncs.com/beinglang/dev-base:v1.0
+              image: replace-your-docker-image
               command: [ "/bin/bash", "/home/dev/script/start.sh" ]
               env:
                 - name: BENCHMARK_NAME
@@ -431,7 +431,7 @@ spec:
               securityContext:
                 runAsUser: 1000
                 runAsGroup: 1000
-              image: registry.cn-shenzhen.aliyuncs.com/beinglang/dev-base:v1.0
+              image: replace-your-docker-image
               command: [ "/bin/bash", "/home/dev/script/start.sh" ]
               env:
                 - name: BENCHMARK_NAME
